@@ -4,11 +4,12 @@ import ListRepresentation from "./ListRepresentation";
 
 function ToDoList() {
   const [listItemArray, setListItemArray] = useState([]);
+  console.log(listItemArray);
 
   return (
     <div className="toDoListContainer">
-      <PostIt SetList={setListItemArray} />
-      <ListRepresentation ListItemArray={listItemArray} />
+      <PostIt SetList={setListItemArray} ListItemArray={listItemArray} />
+      <ListRepresentation SetList={setListItemArray} ListItemArray={listItemArray} />
     </div>
   );
 }

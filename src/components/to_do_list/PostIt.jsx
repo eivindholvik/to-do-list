@@ -1,12 +1,24 @@
 import React from "react";
 import { useState } from "react";
 
+function assignKey(list){
+  let tempMax = 0;
+  for(let i = 0; i < list.length; i++){
+    const tempKey = Number(list[i].key);
+    if(tempKey === NaN) continue;
+    if(tempKey > tempMax) {
+      tempMax = tempKey; 
+    }
+  }
+  return (tempMax + 1).toString().padStart(8, "0");
+}
+
 export default function PostIt(props) {
   const [listItem, setListItem] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.SetList((prevState) => [listItem, ...prevState]);
+    props.SetList((prevState) => [{content: listItem, key: assignKey(props.ListItemArray), finished: false}, ...prevState]);
     setListItem("");
   };
 
